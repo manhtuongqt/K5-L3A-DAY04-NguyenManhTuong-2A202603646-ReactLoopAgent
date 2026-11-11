@@ -2,6 +2,7 @@
 import json
 
 from status_tools import SCHEMAS
+from bonus.runtime import GUIDANCE, RetryPolicy, context_result
 
 SYSTEM_PROMPT = '''Bạn là trợ lý điều tra trạng thái GitHub và Cloudflare.
 Dùng tools trước khi khẳng định về trạng thái. Phân biệt incident hiện tại và lịch sử,
@@ -26,8 +27,14 @@ thái tổng quan/component, và không chứng minh nguyên nhân lỗi của n
 
 def run_agent(question, provider, tools, max_steps=6):
     """Trả dict: status, answer, trace, usage. Contract chi tiết trong GUIDE.md."""
+    schemas = getattr(tools, 'schemas', SCHEMAS)
+    extended = hasattr(tools, 'schemas')
+    system_prompt = getattr(tools, 'system_prompt', SYSTEM_PROMPT)
+    if extended:
+        system_prompt += GUIDANCE
+    policy = RetryPolicy(tools) if extended else None
     messages = [
-        {'role': 'system', 'content': SYSTEM_PROMPT},
+        {'role': 'system', 'content': system_prompt},
         {'role': 'user', 'content': question},
     ]
     trace, usage = [], []
@@ -45,7 +52,7 @@ def run_agent(question, provider, tools, max_steps=6):
 
     for step in range(1, max_steps + 1):
         try:
-            response = provider.complete(messages, SCHEMAS)
+            response = provider.complete(messages, schemas)
         except Exception as exc:
             # Record only the type: exception text could contain credentials.
             trace.append({'event': 'provider_error', 'step': step,
@@ -85,6 +92,7 @@ def run_agent(question, provider, tools, max_steps=6):
         # Return ALL tool results before requesting the next model response.
         for call in calls:
             arguments = call['arguments']
+            tool_event = 'tool'
             try:
                 arguments = json.loads(arguments)
                 if not isinstance(arguments, dict):
@@ -93,18 +101,28 @@ def run_agent(question, provider, tools, max_steps=6):
                 observation = {'ok': False, 'error': 'INVALID_ARGUMENTS'}
             else:
                 try:
-                    observation = tools.execute(call['name'], arguments)
+                    if policy is None:
+                        observation = tools.execute(call['name'], arguments)
+                    else:
+                        observation, executed, events = policy.execute(call['name'], arguments)
+                        trace.extend({**event, 'step': step} for event in events)
+                        if not executed:
+                            tool_event = 'retry_blocked'
                 except Exception as exc:
                     observation = {'ok': False, 'error': type(exc).__name__}
 
-            trace.append({'event': 'tool', 'step': step, 'name': call['name'],
+            trace.append({'event': tool_event, 'step': step, 'name': call['name'],
                           'arguments': arguments, 'result': observation})
             if (call['name'] == 'get_incident_details'
                     and isinstance(observation, dict) and observation.get('ok') is True
                     and isinstance(observation.get('url'), str) and observation['url']):
                 incident_urls.add(observation['url'])
+            for_model, omitted = context_result(observation) if extended else (observation, 0)
+            if omitted:
+                trace.append({'event': 'context_compacted', 'step': step,
+                              'name': call['name'], 'omitted_distractors': omitted})
             messages.append({'role': 'tool', 'tool_call_id': call['id'],
-                             'content': json.dumps(observation, ensure_ascii=False)})
+                             'content': json.dumps(for_model, ensure_ascii=False)})
 
     trace.append({'event': 'max_steps', 'step': max_steps})
     return result('max_steps')

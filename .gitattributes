@@ -8,3 +8,7 @@ artifacts/cp5_v1/*.py -text
 eval_before.json -text
 eval_after.json -text
 artifacts/**/*.json -text
+eval_bonus.json -text
+bonus/runtime.py -text
+artifacts/bonus/*.py -text
+artifacts/bonus/bonus/*.py -text

@@ -16,6 +16,7 @@ Mở http://127.0.0.1:8504. Không cần cài thư viện bổ sung.
 - **CP5:** xem lỗi H3 trước/sau; mô phỏng thiếu URL thực thi đúng agent loop và event `validation_missing_source`.
 - **CP6:** so sánh toàn bộ case, điểm, token, model calls và cấu hình trước/sau.
 - **CP7:** bảng gate của từng CP, bằng chứng và link GitHub; LMS do người học tự nộp.
+- **BONUS:** điểm bộ 10 case và trace từng case đã lưu; không gọi API khi xem.
 
 Khi có dữ liệu mới, dùng nút làm mới trên giao diện. Các file eval gốc không bị sửa bởi demo. Chỉ CP2 có nút gọi API thật; các mục đọc bằng chứng không tự chạy lại toàn bộ eval.
 

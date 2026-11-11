@@ -8,7 +8,7 @@ MSSV: 2A202603646 · Lớp L3A.
 
 | Checkpoint | Công việc | Bằng chứng và điều kiện đạt |
 |---|---|---|
-| CP3 | Giới hạn bước, xử lý lỗi và trace. | Mốc ban đầu 41/43; bản cuối 47/47 tests đạt. [CP3](docs/checkpoints/CP3_DANH_GIA.md). |
+| CP3 | Giới hạn bước, xử lý lỗi và trace. | Mốc ban đầu 41/43; CP5 đạt 47/47; sau mở rộng bonus đạt 53/53 tests chính và 3/3 tests bonus. [CP3](docs/checkpoints/CP3_DANH_GIA.md). |
 | CP4 | Eval lần đầu và đọc lỗi. | 22/22 case được chấm, 96,73/100 khác `null`. [CP4](docs/checkpoints/CP4_DANH_GIA.md). |
 | CP5 | Cải tiến chọn tool và kiểm tra URL nguồn. | Có thay đổi thật trong `agent.py`, tests không còn lỗi. [CP5](docs/checkpoints/CP5_DANH_GIA.md). |
 | CP6 | Eval cùng cấu hình, so sánh toàn bộ case. | Kết quả và điều kiện đối chiếu trong [CP6](docs/checkpoints/CP6_DANH_GIA.md) và audit. |
@@ -41,7 +41,7 @@ Nguyên nhân là prompt chưa phân biệt rõ câu hỏi tra ID với câu h�
 - Sau khi đọc hồi quy H2, bổ sung quy tắc chung: câu hỏi vừa hỏi ID vừa hỏi trạng thái dịch vụ phải kiểm tra status riêng, vì resolved của một incident không thay thế trạng thái component.
 - Không hard-code ID/case trong agent; không đổi fixtures, cases, scenarios, grading hoặc tests gốc.
 
-Bản cuối và hash ở `artifacts/cp5_improved/manifest.json`; bản CP3 trước sửa ở `artifacts/cp3_baseline/`. Tests cuối: **47/47**, gồm tests gốc, sáu tests CP3 và bốn tests demo.
+Bản CP5 dùng cho eval core và hash ở `artifacts/cp5_improved/manifest.json`; bản CP3 trước sửa ở `artifacts/cp3_baseline/`. Tại mốc đó **47/47 tests** đạt. Sau khi thêm bonus, bộ tests chính/mở rộng có **53/53** và bộ tests riêng bonus có **3/3** đạt; xem `artifacts/bonus/verification.json`.
 
 ## 4. So sánh hai lần chạy
 
@@ -69,3 +69,11 @@ Agent và judge cùng model có thể tạo thiên lệch; điểm judge không 
 Snapshot ngày 09/11/2026 không mô tả trạng thái live hiện tại. Tool có phạm vi tìm giới hạn và timeline có thể bị rút gọn. Có URL không bảo đảm mọi nhận định đúng. Tests offline xác minh contract, không chứng minh năng lực model trên mọi câu hỏi thực tế. Cải thiện một case không bảo đảm các case khác không giảm điểm.
 
 Demo ghi nhãn riêng log API đã lưu, mô phỏng FakeProvider và lượt API mới. Không dùng các mô phỏng offline thay thế kết quả eval. Người học tự giải thích code, trình bày kết quả và nộp link lên LMS; repo không tự xác nhận các việc đó đã diễn ra.
+
+## 6. Phần bonus bổ sung
+
+`eval_bonus.json` chấm đủ 10/10 case, đạt 99,1/100 và quy đổi tham khảo 14,86/15. Bộ này tách riêng bài chính: max steps 16, dataset bonus, agent và judge cùng model CKEY đã dùng. Báo cáo retry, pagination, context, evidence và giới hạn tại [docs/BONUS.md](docs/BONUS.md).
+
+Agent dùng schemas/system prompt của tools khi có. Bonus có giới hạn 3 lần thử khi 429 liên tục, tôn trọng Retry-After trong budget chờ 5 giây, đọc tiếp timeline khi cần và bỏ 160 distractors khỏi context model nhưng giữ raw trace. B8 đạt 92; B9 đạt 99 và vẫn gọi các tool không cần thiết. Không sửa điểm hoặc bỏ các hạn chế này.
+
+Code hiện tại đã mở rộng sau mốc CP6. Hai kết quả core không bị chạy lại hoặc ghi đè. Sáu trajectory được đối chiếu offline với bản CP5 đã eval; không gọi đó là bằng chứng accuracy core của một lượt API mới.

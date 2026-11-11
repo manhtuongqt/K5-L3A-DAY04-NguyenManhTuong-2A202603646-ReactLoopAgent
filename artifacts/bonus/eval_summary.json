@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "total_cases": 10,
+    "scored_cases": 10,
+    "unscored_cases": 0,
+    "score_0_100": 99.1,
+    "partial_mean_0_100": null,
+    "bonus_points_0_15": 14.86
+  },
+  "config": {
+    "provider": "openai",
+    "model": "claude-opus-5",
+    "judge_provider": "openai",
+    "judge_model": "claude-opus-5",
+    "max_steps": 16,
+    "dataset": "bonus"
+  },
+  "eval_sha256": "231e6b3ad6627fe90bc1d836dcbd18f264a49506b3adb7509dbdb38e9fc8f478",
+  "scores": {
+    "B1": 100,
+    "B2": 100,
+    "B3": 100,
+    "B4": 100,
+    "B5": 100,
+    "B6": 100,
+    "B7": 100,
+    "B8": 92,
+    "B9": 99,
+    "B10": 100
+  },
+  "agent_model_calls": 30,
+  "actual_tool_calls": 37,
+  "total_tokens_agent_judge": 72406,
+  "mechanical_violations": []
+}

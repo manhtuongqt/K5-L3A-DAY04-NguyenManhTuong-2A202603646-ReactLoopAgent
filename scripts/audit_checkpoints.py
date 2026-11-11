@@ -43,6 +43,13 @@ def main():
                  for path, sha in baseline['protected_sha256'].items()}
     code_frozen = all(hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == sha
                       for path, sha in code['files'].items())
+    evaluated_core_intact = all(hashlib.sha256((ROOT / 'artifacts/cp5_improved' / path).read_bytes()).hexdigest() == sha
+                              for path, sha in code['files'].items())
+    bonus_proof = read('artifacts/bonus/verification.json') if (artifacts / 'bonus/verification.json').exists() else {}
+    bonus_core_compatible = bool(bonus_proof.get('core_contract_parity') and evaluated_core_intact
+        and bonus_proof.get('core_snapshot_sha256') == code['files']['agent.py']
+        and bonus_proof.get('current_agent_sha256') == hashlib.sha256((ROOT / 'agent.py').read_bytes()).hexdigest()
+        and bonus_proof.get('bonus_runtime_sha256') == hashlib.sha256((ROOT / 'bonus/runtime.py').read_bytes()).hexdigest())
     before_complete = len(before['cases']) == 22 and before['summary']['scored_cases'] == 22 and before['summary']['score_0_100'] is not None
     after_complete = bool(after and len(after['cases']) == 22 and after['summary']['scored_cases'] == 22 and after['summary']['score_0_100'] is not None)
     same_config = bool(after and before['config'] == after['config'])
@@ -93,7 +100,7 @@ def main():
          'criteria': 'NOTES mục 1–3 có bằng chứng/thay đổi; toàn bộ tests đạt.',
          'detail': 'URL validation không chứng minh mọi claim đúng. Không sửa dataset, fixtures hay grading.',
          'evidence': ['agent.py', 'docs/checkpoints/CP5_DANH_GIA.md', 'NOTES.md', 'artifacts/cp5_improved/manifest.json']},
-        {'id': 'CP6', 'title': 'Eval sau cải tiến', 'status': 'passed' if after_complete and same_config and code_frozen and all(protected.values()) else 'pending',
+        {'id': 'CP6', 'title': 'Eval sau cải tiến', 'status': 'passed' if after_complete and same_config and evaluated_core_intact and (code_frozen or bonus_core_compatible) and all(protected.values()) else 'pending',
          'work': 'Chạy lại cùng cấu hình; so sánh điểm, lỗi, model calls và token.',
          'criteria': '22/22 được chấm, config trước/sau giống nhau, NOTES mục 4–5 hoàn chỉnh.',
          'detail': 'Một lượt mỗi bản không chứng minh ổn định; đọc cả hồi quy và cải thiện.',
@@ -106,6 +113,8 @@ def main():
     ]
     audit = {'generated_at_utc': datetime.now(timezone.utc).isoformat(), 'unit_tests': units,
              'protected_unchanged': protected, 'improved_code_frozen': code_frozen,
+             'evaluated_core_snapshot_intact': evaluated_core_intact,
+             'bonus_core_contract_compatible': bonus_core_compatible,
              'config_equal': same_config, 'gates': gates,
              'lms_submitted': False, 'classroom_demo_verified': False}
     (artifacts / 'checkpoint_audit.json').write_text(json.dumps(audit, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')

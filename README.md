@@ -13,6 +13,7 @@ Theo [SUBMISSION.md](SUBMISSION.md), bốn file chính được giữ ở gốc 
 ├── eval_before.json          # Eval trước cải tiến, đủ 22 case
 ├── eval_after.json           # Eval sau cải tiến, đủ 22 case
 ├── NOTES.md                  # Phân tích đủ 5 mục theo mẫu
+├── eval_bonus.json            # Kết quả 10 case bonus, chấm riêng
 ├── docs/checkpoints/         # Báo cáo bổ sung riêng cho từng CP
 ├── artifacts/                # Trace, kết quả kiểm tra và các phiên bản
 │   └── cp2/                  # Các log chạy thử, kết nối model
@@ -40,8 +41,9 @@ Python 3.10+, không cần thư viện ngoài. Đặt key trong `.env`, không �
 | CP7 | [Demo và checklist nộp bài](docs/checkpoints/CP7_NOP_BAI.md) |
 | Phân tích | [NOTES.md](NOTES.md) · [Audit gate](artifacts/checkpoint_audit.json) |
 | Công cụ xem thêm | [Hướng dẫn chạy demo cục bộ](demo/README.md) |
+| Bonus | [Báo cáo 5 provider, retry, pagination và context](docs/BONUS.md) · [10 kết quả gốc](eval_bonus.json) |
 
-Kiểm tra offline bằng `python -m unittest discover -s tests -v`. Hai file eval dùng cùng cấu hình; code của các phiên bản và kết quả cải tiến trung gian được giữ trong `artifacts/`. Không sửa fixtures, cases, scenarios hoặc grading để làm case pass. Bonus chưa thực hiện.
+Kiểm tra offline bằng `python -m unittest discover -s tests -v`. Hai file eval chính dùng cùng cấu hình; code của các phiên bản và kết quả cải tiến trung gian được giữ trong `artifacts/`. Không sửa fixtures, cases, scenarios hoặc grading để làm case pass. Bonus đã chạy đủ 10 case: 99,1/100, quy đổi tham khảo 14,86/15; điểm cuối do giảng viên đối chiếu.
 
 Code có hỗ trợ từ coding agent; báo cáo kỹ thuật dựa trên tests và trace thực tế. Tôi cần giải thích được code, kết quả và giới hạn khi trình bày. Việc nộp link lên LMS do tôi thực hiện; trạng thái nộp chưa được tự động xác nhận trong repo.
 

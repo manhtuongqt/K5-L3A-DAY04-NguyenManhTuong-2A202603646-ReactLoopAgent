@@ -7,6 +7,12 @@ test_live_http_429_is_not_an_outage (test_bonus.BonusToolsTests.test_live_http_4
 test_min_max_calls_and_bonus_conversion (test_bonus.BonusToolsTests.test_min_max_calls_and_bonus_conversion) ... ok
 test_pagination_preserves_timeline (test_bonus.BonusToolsTests.test_pagination_preserves_timeline) ... ok
 test_transient_and_persistent_429 (test_bonus.BonusToolsTests.test_transient_and_persistent_429) ... ok
+test_core_trajectories_match_evaluated_cp5_snapshot (test_bonus_extension.BonusExtensionTests.test_core_trajectories_match_evaluated_cp5_snapshot) ... ok
+test_http_date_retry_after_is_supported (test_bonus_extension.BonusExtensionTests.test_http_date_retry_after_is_supported) ... ok
+test_long_retry_after_blocks_without_early_request (test_bonus_extension.BonusExtensionTests.test_long_retry_after_blocks_without_early_request) ... ok
+test_noise_removed_only_from_model_context_not_trace (test_bonus_extension.BonusExtensionTests.test_noise_removed_only_from_model_context_not_trace) ... ok
+test_persistent_429_stops_actual_tool_calls_at_three (test_bonus_extension.BonusExtensionTests.test_persistent_429_stops_actual_tool_calls_at_three) ... ok
+test_short_retry_after_waits_before_request (test_bonus_extension.BonusExtensionTests.test_short_retry_after_waits_before_request) ... ok
 test_invalid_budget_does_not_call_provider (test_cp3.RobustnessTests.test_invalid_budget_does_not_call_provider) ... ok
 test_non_object_json_is_rejected_before_execution (test_cp3.RobustnessTests.test_non_object_json_is_rejected_before_execution) ... ok
 test_partial_tool_failure_still_returns_every_call_id (test_cp3.RobustnessTests.test_partial_tool_failure_still_returns_every_call_id) ... ok
@@ -47,6 +53,6 @@ test_injection_is_scoped_to_evaluation (test_validation.ScenarioTests.test_injec
 test_partial_timeout_does_not_affect_github (test_validation.ScenarioTests.test_partial_timeout_does_not_affect_github) ... ok
 
 ----------------------------------------------------------------------
-Ran 47 tests in 0.203s
+Ran 53 tests in 0.282s
 
 OK

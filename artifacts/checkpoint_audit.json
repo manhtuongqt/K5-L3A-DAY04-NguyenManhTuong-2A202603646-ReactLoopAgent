@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-11-11T04:48:02.410157+00:00",
+  "generated_at_utc": "2026-11-11T05:14:11.424777+00:00",
   "unit_tests": {
-    "total": 47,
-    "passed": 47,
+    "total": 53,
+    "passed": 53,
     "failures": 0,
     "errors": 0
   },
@@ -14,7 +14,9 @@
     "fixtures/cloudflare.json": true,
     "fixtures/github.json": true
   },
-  "improved_code_frozen": true,
+  "improved_code_frozen": false,
+  "evaluated_core_snapshot_intact": true,
+  "bonus_core_contract_compatible": true,
   "config_equal": true,
   "gates": [
     {
@@ -48,7 +50,7 @@
       "status": "passed",
       "work": "Giới hạn bước, lỗi JSON/tool/provider, output bị cắt và trace.",
       "criteria": "Không crash; lỗi trả observation hoặc kết thúc đúng; chỉ báo completed không thay thế độ đúng.",
-      "detail": "Bản CP3: 41/43, còn hai tests nguồn CP5. Bản cuối: 47/47 tests đạt.",
+      "detail": "Bản CP3: 41/43, còn hai tests nguồn CP5. Bản cuối: 53/53 tests đạt.",
       "evidence": [
         "docs/checkpoints/CP3_DANH_GIA.md",
         "tests/test_cp3.py",

@@ -21,6 +21,7 @@ Log mô phỏng không thay thế trace API; demo trên trình duyệt không t�
 
 - Code: `agent.py`, không dùng framework agent.
 - Hai kết quả thật: `eval_before.json`, `eval_after.json`; đủ 22 case, điểm tổng khác `null`.
+- Bonus: thêm `eval_bonus.json` đủ 10 case và báo cáo `docs/BONUS.md`; điểm bonus chấm riêng.
 - Cấu hình model/judge/dataset/max steps giống nhau; fixtures và grading không đổi.
 - `NOTES.md` đủ năm mục; CP3, CP4, CP5, CP6 được báo cáo riêng.
 - Toàn bộ unit tests đạt; bằng chứng trong `artifacts/final_unit_tests.txt` và `artifacts/checkpoint_audit.json`.

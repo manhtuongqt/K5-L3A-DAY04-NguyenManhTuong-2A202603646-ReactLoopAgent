@@ -31,13 +31,14 @@ def lab_report():
     before, after = read_json('eval_before.json'), read_json('eval_after.json')
     audit = read_json('artifacts/checkpoint_audit.json', {})
     return {'gates': audit.get('gates', []), 'before': before, 'after': after,
+            'bonus': read_json('eval_bonus.json'),
             'comparison': read_json('artifacts/cp6_comparison.json'),
             'unit_tests': audit.get('unit_tests', read_json('artifacts/cp5_improved/manifest.json', {}).get('unit_tests', {})),
             'submission': submission_state()}
 
 
 def evidence(phase, case_id):
-    if phase not in ('before', 'after'):
+    if phase not in ('before', 'after', 'bonus'):
         raise ValueError('Sai phiên bản eval.')
     report = read_json('eval_' + phase + '.json')
     if not report:
