@@ -2,8 +2,6 @@
 
 **MSSV:** 2A202603646 · **Lớp:** L3A · **Hình thức:** cá nhân.
 
-Tôi xây dựng Status Investigation Agent để kiểm tra dữ liệu trạng thái GitHub và Cloudflare, đọc incident và trả lời có bằng chứng. Phần dưới giữ hướng dẫn đề gốc; báo cáo bài làm được tách theo checkpoint để đối chiếu từng yêu cầu.
-
 ## Cấu trúc bài nộp
 
 Theo [SUBMISSION.md](SUBMISSION.md), bốn file chính được giữ ở gốc repository:
@@ -25,9 +23,7 @@ Theo [SUBMISSION.md](SUBMISSION.md), bốn file chính được giữ ở gốc 
 
 `eval_before.json` đạt 96,73/100; `eval_after.json` đạt 96,27/100. Cả hai chấm đủ 22/22 case với cùng cấu hình. `NOTES.md` ghi thay đổi, lỗi đã sửa, hồi quy và giới hạn. Hướng dẫn và rubric gốc được giữ ở các file tương ứng; không sửa dữ liệu hoặc bộ chấm.
 
-**Nộp bài bằng link repository GitHub.** Tôi tự nộp link trên LMS theo `SUBMISSION.md`. Demo là công cụ kiểm tra bổ sung, không phải link cần nộp.
 
-Python 3.10+, không cần thư viện ngoài. Đặt key trong `.env`, không điền vào `.env.example`. Script `with_env.py` nạp biến cho tiến trình Python. Model bài làm dùng tên `claude-opus-5` do CKEY cung cấp qua giao thức OpenAI-compatible; tên backend chưa được xác minh độc lập. Key không nằm trong repo.
 
 ## Hồ sơ từng checkpoint
 
