@@ -8,7 +8,7 @@ Repo nộp: https://github.com/manhtuongqt/K5-L3A-DAY04-NguyenManhTuong-2A202603
 
 ## Kịch bản demo
 
-Chạy `python with_env.py demo_server.py`, mở http://127.0.0.1:8504.
+Các trace cần trình bày đều có trong hai file eval ở gốc repo. Nếu muốn quan sát bằng giao diện cục bộ, xem `demo/README.md`; không nộp link web.
 
 1. **Trace nhiều bước:** mở CP4 hoặc CP6, chọn E2 và xem model lấy status rồi đọc chi tiết incident. Chỉ ra snapshot timestamp, phạm vi FedRAMP và URL. Hoặc dùng CP2 tình huống điều tra hai bước để gọi API lại; có thể phát sinh phí.
 2. **Một lỗi agent thật:** mở H3 trước cải tiến. Agent chỉ gọi `get_status`; giải thích vì sao danh sách 5 mục không đủ để xác nhận ID vắng mặt trong 50 incident. Mở H3 sau cải tiến để đối chiếu việc tra trực tiếp ID.

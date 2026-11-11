@@ -47,6 +47,6 @@ test_injection_is_scoped_to_evaluation (test_validation.ScenarioTests.test_injec
 test_partial_timeout_does_not_affect_github (test_validation.ScenarioTests.test_partial_timeout_does_not_affect_github) ... ok
 
 ----------------------------------------------------------------------
-Ran 47 tests in 0.232s
+Ran 47 tests in 0.203s
 
 OK

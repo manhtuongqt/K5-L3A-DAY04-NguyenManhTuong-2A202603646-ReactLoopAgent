@@ -6,7 +6,7 @@ import subprocess
 from agent import run_agent
 from status_tools import StatusTools
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 REPO_URL = 'https://github.com/manhtuongqt/K5-L3A-DAY04-NguyenManhTuong-2A202603646-ReactLoopAgent'
 
 

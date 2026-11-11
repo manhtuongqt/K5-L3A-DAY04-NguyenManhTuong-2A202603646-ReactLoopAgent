@@ -29,7 +29,7 @@ Cấu hình trước/sau: provider `openai` qua CKEY, agent model và judge mode
 
 Điểm tổng giảm **0,46 điểm**. Token giảm **9.572**, nhưng số token ít hơn không tự chứng minh agent tốt hơn: A1 đã bỏ sót thông tin cần đọc.
 
-Chi tiết đủ 22 case trong [bảng so sánh](artifacts/cp6_case_comparison.md) và [JSON](artifacts/cp6_comparison.json). Không bỏ case giảm điểm hoặc thay từng case bằng một lần chạy khác.
+Chi tiết đủ 22 case trong [bảng so sánh](../../artifacts/cp6_case_comparison.md) và [JSON](../../artifacts/cp6_comparison.json). Không bỏ case giảm điểm hoặc thay từng case bằng một lần chạy khác.
 
 ## Đọc trace
 

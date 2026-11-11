@@ -8,11 +8,11 @@ MSSV: 2A202603646 · Lớp L3A.
 
 | Checkpoint | Công việc | Bằng chứng và điều kiện đạt |
 |---|---|---|
-| CP3 | Giới hạn bước, xử lý lỗi và trace. | Mốc ban đầu 41/43; bản cuối 47/47 tests đạt. [CP3](CP3_DANH_GIA.md). |
-| CP4 | Eval lần đầu và đọc lỗi. | 22/22 case được chấm, 96,73/100 khác `null`. [CP4](CP4_DANH_GIA.md). |
-| CP5 | Cải tiến chọn tool và kiểm tra URL nguồn. | Có thay đổi thật trong `agent.py`, tests không còn lỗi. [CP5](CP5_DANH_GIA.md). |
-| CP6 | Eval cùng cấu hình, so sánh toàn bộ case. | Kết quả và điều kiện đối chiếu trong [CP6](CP6_DANH_GIA.md) và audit. |
-| CP7 | Demo, push repo và nộp. | Bằng chứng kỹ thuật có trên demo; người học tự nộp LMS. [CP7](CP7_NOP_BAI.md). |
+| CP3 | Giới hạn bước, xử lý lỗi và trace. | Mốc ban đầu 41/43; bản cuối 47/47 tests đạt. [CP3](docs/checkpoints/CP3_DANH_GIA.md). |
+| CP4 | Eval lần đầu và đọc lỗi. | 22/22 case được chấm, 96,73/100 khác `null`. [CP4](docs/checkpoints/CP4_DANH_GIA.md). |
+| CP5 | Cải tiến chọn tool và kiểm tra URL nguồn. | Có thay đổi thật trong `agent.py`, tests không còn lỗi. [CP5](docs/checkpoints/CP5_DANH_GIA.md). |
+| CP6 | Eval cùng cấu hình, so sánh toàn bộ case. | Kết quả và điều kiện đối chiếu trong [CP6](docs/checkpoints/CP6_DANH_GIA.md) và audit. |
+| CP7 | Demo, push repo và nộp. | Bằng chứng kỹ thuật có trên demo; người học tự nộp LMS. [CP7](docs/checkpoints/CP7_NOP_BAI.md). |
 
 ## 1. Case được chọn
 

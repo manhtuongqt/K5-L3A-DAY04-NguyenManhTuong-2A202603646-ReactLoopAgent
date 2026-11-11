@@ -18,7 +18,7 @@ CP3 được trình bày riêng tại [CP3_DANH_GIA.md](CP3_DANH_GIA.md). Bản 
 
 ## Eval lần đầu
 
-Thử cấu hình agent và judge bằng E2 trước: 100/100, gọi `get_status` rồi `get_incident_details`, phân biệt đúng phạm vi FedRAMP. Kết quả ở `eval_results_cp3_e2.json`.
+Thử cấu hình agent và judge bằng E2 trước: 100/100, gọi `get_status` rồi `get_incident_details`, phân biệt đúng phạm vi FedRAMP. Kết quả ở `artifacts/cp2/e2_smoke.json`.
 
 Lệnh chạy đủ bộ:
 

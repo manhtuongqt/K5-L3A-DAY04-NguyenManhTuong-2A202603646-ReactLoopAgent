@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-11-11T04:39:48.733978+00:00",
+  "generated_at_utc": "2026-11-11T04:48:02.410157+00:00",
   "unit_tests": {
     "total": 47,
     "passed": 47,
@@ -25,8 +25,8 @@
       "criteria": "Tool trả JSON; có API run thật và repo riêng.",
       "detail": "Model claude-opus-5; key ngoài Git. Quyền push được xác minh ở bước phát hành.",
       "evidence": [
-        "cp2_ckey_opus_run.json",
-        "CP2_HUONG_DAN.md"
+        "artifacts/cp2/cp2_ckey_opus_run.json",
+        "docs/checkpoints/CP2_HUONG_DAN.md"
       ]
     },
     {
@@ -38,7 +38,7 @@
       "detail": "Có thể thử API thật trong tab CP2; snapshot không phải trạng thái live.",
       "evidence": [
         "agent.py",
-        "cp2_ckey_opus_run.json",
+        "artifacts/cp2/cp2_ckey_opus_run.json",
         "artifacts/final_unit_tests.txt"
       ]
     },
@@ -50,7 +50,7 @@
       "criteria": "Không crash; lỗi trả observation hoặc kết thúc đúng; chỉ báo completed không thay thế độ đúng.",
       "detail": "Bản CP3: 41/43, còn hai tests nguồn CP5. Bản cuối: 47/47 tests đạt.",
       "evidence": [
-        "CP3_DANH_GIA.md",
+        "docs/checkpoints/CP3_DANH_GIA.md",
         "tests/test_cp3.py",
         "artifacts/final_unit_tests.txt"
       ]
@@ -64,7 +64,7 @@
       "detail": "96,73/100; H3 50/100 do chưa tra trực tiếp ID incident.",
       "evidence": [
         "eval_before.json",
-        "CP4_DANH_GIA.md",
+        "docs/checkpoints/CP4_DANH_GIA.md",
         "NOTES.md"
       ]
     },
@@ -77,7 +77,7 @@
       "detail": "URL validation không chứng minh mọi claim đúng. Không sửa dataset, fixtures hay grading.",
       "evidence": [
         "agent.py",
-        "CP5_DANH_GIA.md",
+        "docs/checkpoints/CP5_DANH_GIA.md",
         "NOTES.md",
         "artifacts/cp5_improved/manifest.json"
       ]
@@ -92,7 +92,7 @@
       "evidence": [
         "eval_after.json",
         "artifacts/cp6_comparison.json",
-        "CP6_DANH_GIA.md",
+        "docs/checkpoints/CP6_DANH_GIA.md",
         "NOTES.md"
       ]
     },
@@ -104,8 +104,8 @@
       "criteria": "Demo giải thích được; repo public đúng tên, push đầy đủ; người học tự nộp link LMS.",
       "detail": "Có demo và bằng chứng kỹ thuật; trạng thái push hiển thị theo Git. Chưa xác nhận nộp LMS hoặc trình bày với trợ giảng.",
       "evidence": [
-        "CP7_NOP_BAI.md",
-        "DEMO_CP2.md",
+        "docs/checkpoints/CP7_NOP_BAI.md",
+        "demo/README.md",
         "https://github.com/manhtuongqt/K5-L3A-DAY04-NguyenManhTuong-2A202603646-ReactLoopAgent"
       ]
     }

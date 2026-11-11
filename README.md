@@ -4,13 +4,27 @@
 
 Tôi xây dựng Status Investigation Agent để kiểm tra dữ liệu trạng thái GitHub và Cloudflare, đọc incident và trả lời có bằng chứng. Phần dưới giữ hướng dẫn đề gốc; báo cáo bài làm được tách theo checkpoint để đối chiếu từng yêu cầu.
 
-## Mở demo
+## Cấu trúc bài nộp
 
-```powershell
-python with_env.py demo_server.py
+Theo [SUBMISSION.md](SUBMISSION.md), bốn file chính được giữ ở gốc repository:
+
+```text
+├── agent.py                  # Agent loop hoàn chỉnh
+├── eval_before.json          # Eval trước cải tiến, đủ 22 case
+├── eval_after.json           # Eval sau cải tiến, đủ 22 case
+├── NOTES.md                  # Phân tích đủ 5 mục theo mẫu
+├── docs/checkpoints/         # Báo cáo bổ sung riêng cho từng CP
+├── artifacts/                # Trace, kết quả kiểm tra và các phiên bản
+│   └── cp2/                  # Các log chạy thử, kết nối model
+├── demo/                     # Công cụ trực quan để tự kiểm tra
+├── scripts/                  # Script đối chiếu checkpoint
+├── tests/                    # Tests gốc và tests bổ sung
+└── ...                       # Giữ các file và thư mục của đề
 ```
 
-Mở **http://127.0.0.1:8504**. Demo gồm CP2 chạy API thật, CP3 mô phỏng lỗi offline, CP4 đọc eval trước cải tiến, CP5 xem cách sửa lỗi/nguồn, CP6 so sánh và CP7 đối chiếu gate. Các loại dữ liệu được ghi nhãn riêng. Dữ liệu status là snapshot, không phải tình trạng live hiện tại.
+`eval_before.json` đạt 96,73/100; `eval_after.json` đạt 96,27/100. Cả hai chấm đủ 22/22 case với cùng cấu hình. `NOTES.md` ghi thay đổi, lỗi đã sửa, hồi quy và giới hạn. Hướng dẫn và rubric gốc được giữ ở các file tương ứng; không sửa dữ liệu hoặc bộ chấm.
+
+**Nộp bài bằng link repository GitHub.** Tôi tự nộp link trên LMS theo `SUBMISSION.md`. Demo là công cụ kiểm tra bổ sung, không phải link cần nộp.
 
 Python 3.10+, không cần thư viện ngoài. Đặt key trong `.env`, không điền vào `.env.example`. Script `with_env.py` nạp biến cho tiến trình Python. Model bài làm dùng tên `claude-opus-5` do CKEY cung cấp qua giao thức OpenAI-compatible; tên backend chưa được xác minh độc lập. Key không nằm trong repo.
 
@@ -18,14 +32,14 @@ Python 3.10+, không cần thư viện ngoài. Đặt key trong `.env`, không �
 
 | Mục | Công việc và bằng chứng |
 |---|---|
-| CP1–CP2 | [Cấu hình và loop cơ bản](CP2_HUONG_DAN.md) |
-| CP3 | [Xử lý lỗi và trace](CP3_DANH_GIA.md) |
-| CP4 | [Eval trước cải tiến](CP4_DANH_GIA.md) · [22 kết quả gốc](eval_before.json) |
-| CP5 | [Phân tích và sửa agent](CP5_DANH_GIA.md) |
-| CP6 | [So sánh trước/sau](CP6_DANH_GIA.md) · [22 kết quả sau cải tiến](eval_after.json) |
-| CP7 | [Demo và checklist nộp bài](CP7_NOP_BAI.md) |
+| CP1–CP2 | [Cấu hình và loop cơ bản](docs/checkpoints/CP2_HUONG_DAN.md) |
+| CP3 | [Xử lý lỗi và trace](docs/checkpoints/CP3_DANH_GIA.md) |
+| CP4 | [Eval trước cải tiến](docs/checkpoints/CP4_DANH_GIA.md) · [22 kết quả gốc](eval_before.json) |
+| CP5 | [Phân tích và sửa agent](docs/checkpoints/CP5_DANH_GIA.md) |
+| CP6 | [So sánh trước/sau](docs/checkpoints/CP6_DANH_GIA.md) · [22 kết quả sau cải tiến](eval_after.json) |
+| CP7 | [Demo và checklist nộp bài](docs/checkpoints/CP7_NOP_BAI.md) |
 | Phân tích | [NOTES.md](NOTES.md) · [Audit gate](artifacts/checkpoint_audit.json) |
-| Cách sử dụng | [Demo CP2–CP7](DEMO_CP2.md) |
+| Công cụ xem thêm | [Hướng dẫn chạy demo cục bộ](demo/README.md) |
 
 Kiểm tra offline bằng `python -m unittest discover -s tests -v`. Hai file eval dùng cùng cấu hình; code của các phiên bản và kết quả cải tiến trung gian được giữ trong `artifacts/`. Không sửa fixtures, cases, scenarios hoặc grading để làm case pass. Bonus chưa thực hiện.
 

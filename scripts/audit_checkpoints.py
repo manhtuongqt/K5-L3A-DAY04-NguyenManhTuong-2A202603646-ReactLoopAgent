@@ -8,7 +8,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from lab_demo import contract_case, REPO_URL
+from demo.support import contract_case, REPO_URL
 
 
 def read(path):
@@ -72,37 +72,37 @@ def main():
          'work': 'Fork đúng tên L3A, cấu hình model CKEY và chạy hai status tools.',
          'criteria': 'Tool trả JSON; có API run thật và repo riêng.',
          'detail': 'Model claude-opus-5; key ngoài Git. Quyền push được xác minh ở bước phát hành.',
-         'evidence': ['cp2_ckey_opus_run.json', 'CP2_HUONG_DAN.md']},
+         'evidence': ['artifacts/cp2/cp2_ckey_opus_run.json', 'docs/checkpoints/CP2_HUONG_DAN.md']},
         {'id': 'CP2', 'title': 'Agent loop', 'status': 'passed' if tests_pass else 'pending',
          'work': 'Giữ assistant message, trả đúng ID cho mọi tool call, gọi model tiếp đến khi dừng.',
          'criteria': 'Câu hỏi thật completed; tests ID và nhiều calls đạt.',
          'detail': 'Có thể thử API thật trong tab CP2; snapshot không phải trạng thái live.',
-         'evidence': ['agent.py', 'cp2_ckey_opus_run.json', 'artifacts/final_unit_tests.txt']},
+         'evidence': ['agent.py', 'artifacts/cp2/cp2_ckey_opus_run.json', 'artifacts/final_unit_tests.txt']},
         {'id': 'CP3', 'title': 'Xử lý lỗi và trace', 'status': 'passed' if tests_pass else 'pending',
          'work': 'Giới hạn bước, lỗi JSON/tool/provider, output bị cắt và trace.',
          'criteria': 'Không crash; lỗi trả observation hoặc kết thúc đúng; chỉ báo completed không thay thế độ đúng.',
          'detail': f"Bản CP3: 41/43, còn hai tests nguồn CP5. Bản cuối: {units['passed']}/{units['total']} tests đạt.",
-         'evidence': ['CP3_DANH_GIA.md', 'tests/test_cp3.py', 'artifacts/final_unit_tests.txt']},
+         'evidence': ['docs/checkpoints/CP3_DANH_GIA.md', 'tests/test_cp3.py', 'artifacts/final_unit_tests.txt']},
         {'id': 'CP4', 'title': 'Eval lần đầu', 'status': 'passed' if before_complete else 'pending',
          'work': 'Chạy đủ 22 case, đọc reason/mechanical/trace và lập danh sách lỗi.',
          'criteria': '22/22 được chấm và summary.score_0_100 khác null.',
          'detail': '96,73/100; H3 50/100 do chưa tra trực tiếp ID incident.',
-         'evidence': ['eval_before.json', 'CP4_DANH_GIA.md', 'NOTES.md']},
+         'evidence': ['eval_before.json', 'docs/checkpoints/CP4_DANH_GIA.md', 'NOTES.md']},
         {'id': 'CP5', 'title': 'Phân tích và cải tiến', 'status': 'passed' if tests_pass and source_pass else 'pending',
          'work': 'Sửa prompt tra ID cụ thể; loop kiểm tra URL đã quan sát, yêu cầu sửa trong cùng budget.',
          'criteria': 'NOTES mục 1–3 có bằng chứng/thay đổi; toàn bộ tests đạt.',
          'detail': 'URL validation không chứng minh mọi claim đúng. Không sửa dataset, fixtures hay grading.',
-         'evidence': ['agent.py', 'CP5_DANH_GIA.md', 'NOTES.md', 'artifacts/cp5_improved/manifest.json']},
+         'evidence': ['agent.py', 'docs/checkpoints/CP5_DANH_GIA.md', 'NOTES.md', 'artifacts/cp5_improved/manifest.json']},
         {'id': 'CP6', 'title': 'Eval sau cải tiến', 'status': 'passed' if after_complete and same_config and code_frozen and all(protected.values()) else 'pending',
          'work': 'Chạy lại cùng cấu hình; so sánh điểm, lỗi, model calls và token.',
          'criteria': '22/22 được chấm, config trước/sau giống nhau, NOTES mục 4–5 hoàn chỉnh.',
          'detail': 'Một lượt mỗi bản không chứng minh ổn định; đọc cả hồi quy và cải thiện.',
-         'evidence': ['eval_after.json', 'artifacts/cp6_comparison.json', 'CP6_DANH_GIA.md', 'NOTES.md']},
+         'evidence': ['eval_after.json', 'artifacts/cp6_comparison.json', 'docs/checkpoints/CP6_DANH_GIA.md', 'NOTES.md']},
         {'id': 'CP7', 'title': 'Demo, push và nộp', 'status': 'partial',
          'work': 'Demo trace nhiều bước, lỗi H3 thật trước sửa, báo cáo và repo để nộp.',
          'criteria': 'Demo giải thích được; repo public đúng tên, push đầy đủ; người học tự nộp link LMS.',
          'detail': 'Có demo và bằng chứng kỹ thuật; trạng thái push hiển thị theo Git. Chưa xác nhận nộp LMS hoặc trình bày với trợ giảng.',
-         'evidence': ['CP7_NOP_BAI.md', 'DEMO_CP2.md', REPO_URL]},
+         'evidence': ['docs/checkpoints/CP7_NOP_BAI.md', 'demo/README.md', REPO_URL]},
     ]
     audit = {'generated_at_utc': datetime.now(timezone.utc).isoformat(), 'unit_tests': units,
              'protected_unchanged': protected, 'improved_code_frozen': code_frozen,

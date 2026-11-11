@@ -1,7 +1,7 @@
 """Kiểm tra demo không gắn nhãn sai dữ liệu hoặc làm đổi loop."""
 import unittest
 
-from lab_demo import contract_case, evidence
+from demo.support import contract_case, evidence
 
 
 class DemoEvidenceTests(unittest.TestCase):

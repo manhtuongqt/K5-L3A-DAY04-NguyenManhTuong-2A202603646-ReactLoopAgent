@@ -17,7 +17,7 @@ Nguyên nhân H3 chủ yếu là lựa chọn tool và suy luận từ dữ li�
 ## Kiểm tra và điều kiện đạt
 
 - Các tests gốc về source validation đã đạt. Bản kiểm tra ngay sau sửa: 43/43 tests, 0 lỗi; log ở `artifacts/cp5_improved/unit_tests.txt`.
-- Thử API riêng H3: 100/100, lưu tại `eval_results_cp5_h3.json` và bản sao trong `artifacts/cp5_improved/`. Đây là một case, không thay thế toàn bộ eval CP6.
+- Thử API riêng H3: 100/100, lưu tại `artifacts/cp5_improved/h3_smoke.json` và bản sao trong `artifacts/cp5_improved/`. Đây là một case, không thay thế toàn bộ eval CP6.
 - Bản code và SHA-256 lưu trong `artifacts/cp5_improved/manifest.json`.
 - Tests demo bổ sung được ghi nhận riêng trong audit cuối; không làm mất bản kết quả 43/43 ban đầu.
 

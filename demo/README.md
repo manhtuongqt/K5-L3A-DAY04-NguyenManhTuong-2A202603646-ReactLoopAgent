@@ -3,7 +3,7 @@
 Chạy ở thư mục Day04:
 
 ```powershell
-python with_env.py demo_server.py
+python with_env.py demo/server.py
 ```
 
 Mở http://127.0.0.1:8504. Không cần cài thư viện bổ sung.

@@ -6,14 +6,17 @@ import os
 from pathlib import Path
 import re
 import threading
+import sys
 from urllib.parse import urlsplit, parse_qs
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 from agent import run_agent
 from providers import Provider
 from status_tools import StatusTools
-from lab_demo import lab_report, evidence, contract_case
+from demo.support import lab_report, evidence, contract_case
 
-ROOT = Path(__file__).resolve().parent
 RUN_LOCK = threading.Lock()
 CASES = [
     {'id': 'cp2_status', 'title': '01 · Một tool',
@@ -106,10 +109,10 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path in ('/', '/index.html'):
-            self.reply(200, (ROOT / 'demo_ui' / 'index.html').read_text(encoding='utf-8'), 'text/html; charset=utf-8')
+            self.reply(200, (ROOT / 'demo' / 'index.html').read_text(encoding='utf-8'), 'text/html; charset=utf-8')
         elif self.path == '/api/config':
             self.reply(200, {'model': os.getenv('MODEL', ''), 'mode': 'snapshot',
-                             'cases': CASES, 'replay_available': (ROOT / 'cp2_ckey_opus_run.json').exists()})
+                             'cases': CASES, 'replay_available': (ROOT / 'artifacts/cp2/cp2_ckey_opus_run.json').exists()})
         elif self.path == '/api/lab':
             self.reply(200, lab_report())
         elif urlsplit(self.path).path == '/api/evidence':
@@ -119,7 +122,7 @@ class Handler(BaseHTTPRequestHandler):
             except ValueError as exc:
                 self.reply(404, {'message': str(exc)})
         elif self.path == '/api/replay':
-            result = json.loads((ROOT / 'cp2_ckey_opus_run.json').read_text(encoding='utf-8'))
+            result = json.loads((ROOT / 'artifacts/cp2/cp2_ckey_opus_run.json').read_text(encoding='utf-8'))
             self.reply(200, {'kind': 'saved', 'model': 'claude-opus-5',
                             'question': 'Kiểm tra GitHub Actions bằng get_status, sau đó đọc chi tiết một incident liên quan bằng get_incident_details. Nêu mốc snapshot, phạm vi và URL nguồn.',
                             'result': result, 'checks': {'completed': result['status'] == 'completed',

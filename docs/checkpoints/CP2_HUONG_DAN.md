@@ -35,7 +35,7 @@ Một step tính theo lần gọi model. Loop có xử lý lỗi cơ bản để
 ## Kết quả kiểm tra ngày 11/11/2026
 
 - 12/12 tests trong `tests/test_lab.py` đạt. Đây là tests offline, không phải accuracy của model.
-- API thật qua CKEY: `completed`, 2 lần gọi model và 1 lần gọi `get_status` trên snapshot. Trace và answer được lưu trong `cp2_run.json`.
+- API thật qua CKEY: `completed`, 2 lần gọi model và 1 lần gọi `get_status` trên snapshot. Trace và answer được lưu trong `artifacts/cp2/cp2_run.json`.
 - Đây không phải dữ liệu trạng thái live: snapshot GitHub được chụp ngày 09/11/2026.
 - Câu trả lời chạy thử còn nói “hiện đang” mà chưa nêu mốc snapshot và thiếu URL nguồn. Đây là hạn chế quan sát được, chưa phải kết quả eval CP4 hay chứng nhận câu trả lời đúng hoàn toàn.
 - Chưa chạy bộ eval 22 case, chưa hoàn thành CP5 hoặc toàn bộ lab.
@@ -44,9 +44,9 @@ Không sửa fixtures, eval cases, scenarios, grading hoặc tests của đề.
 
 ## Thử model CKEY bổ sung
 
-- `ckey_model_probe.json`: cả `tranhieu13102003/gpt-6-luna` và `claude-opus-5` trả native tool call qua Chat Completions. Opus cũng phản hồi tool-use qua Messages API trong phép thử riêng.
-- `ckey_cp2_comparison.json`: cùng câu hỏi đọc status rồi chi tiết incident. Opus hoàn thành sau 3 model calls, gọi đủ hai tools; Luna gặp lỗi provider trước khi có model response thành công.
-- Trace: `cp2_ckey_opus_run.json` và `cp2_ckey_luna_run.json`. Chỉ một lượt mỗi model, không suy ra accuracy hoặc độ ổn định.
+- `artifacts/cp2/ckey_model_probe.json`: cả `tranhieu13102003/gpt-6-luna` và `claude-opus-5` trả native tool call qua Chat Completions. Opus cũng phản hồi tool-use qua Messages API trong phép thử riêng.
+- `artifacts/cp2/ckey_cp2_comparison.json`: cùng câu hỏi đọc status rồi chi tiết incident. Opus hoàn thành sau 3 model calls, gọi đủ hai tools; Luna gặp lỗi provider trước khi có model response thành công.
+- Trace: `artifacts/cp2/cp2_ckey_opus_run.json` và `artifacts/cp2/cp2_ckey_luna_run.json`. Chỉ một lượt mỗi model, không suy ra accuracy hoặc độ ổn định.
 - `PROVIDER=openai` chỉ giao thức tương thích, không có nghĩa model thuộc OpenAI. Tên model/backend là thông tin gateway cung cấp, chưa xác minh độc lập.
 - Adapter gửi User-Agent `StatusAgentLab/1.0`. Các probe dùng User-Agent mặc định Python từng bị HTTP 403; chưa đủ bằng chứng quy mọi lỗi 403 về một nguyên nhân.
 - Không chạy trình cài đặt từ xa hoặc thay đổi cấu hình Codex toàn máy.
