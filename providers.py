@@ -13,7 +13,11 @@ CONFIG = {
 
 
 def post_json(url, headers, payload):
-    req = urllib.request.Request(url, data=json.dumps(payload).encode(), headers={'Content-Type': 'application/json', **headers})
+    req = urllib.request.Request(url, data=json.dumps(payload).encode(), headers={
+        'Content-Type': 'application/json',
+        'User-Agent': 'StatusAgentLab/1.0',
+        **headers,
+    })
     try:
         with urllib.request.urlopen(req, timeout=60) as response:
             return json.load(response)
@@ -37,6 +41,9 @@ class Provider:
             raise ValueError('Cần đặt MODEL là model có hỗ trợ tool calling.')
         self.name, self.model = name, model
         key_name, self.url = CONFIG[name]
+        # Optional OpenAI-compatible gateway; official endpoint stays the default.
+        if name == 'openai' and os.getenv('OPENAI_BASE_URL'):
+            self.url = os.environ['OPENAI_BASE_URL'].rstrip('/') + '/chat/completions'
         self.key = os.getenv(key_name)
         if not self.key:
             raise ValueError(f'Thiếu {key_name}; xem README.md.')

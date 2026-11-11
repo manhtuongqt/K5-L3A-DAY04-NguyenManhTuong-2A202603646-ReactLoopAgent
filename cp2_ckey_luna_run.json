@@ -1,0 +1,13 @@
+{
+  "status": "error",
+  "answer": "",
+  "trace": [
+    {
+      "event": "provider_error",
+      "step": 1,
+      "error": "RuntimeError"
+    }
+  ],
+  "usage": [],
+  "error": "PROVIDER_ERROR"
+}

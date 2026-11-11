@@ -1,0 +1,98 @@
+{
+  "status": "completed",
+  "answer": "Tất cả các hệ thống của GitHub hiện đang hoạt động bình thường. Tuy nhiên, có một số sự cố đã được giải quyết gần đây liên quan đến GitHub Actions:\n\n*   \"Incident with Actions\" (ID: t89g2q1800fr) được giải quyết vào ngày 5 tháng 11 năm 2026.\n*   \"Incident with Actions\" (ID: h02n9572mx9y) được giải quyết vào ngày 7 tháng 11 năm 2026.\n*   \"Incident with Actions and Pages\" (ID: xr3myzj7ms51) cũng được giải quyết vào ngày 7 tháng 11 năm 2026.\n\nNgoài ra, còn có một sự cố chung với hiệu suất suy giảm trên nhiều dịch vụ GitHub (ID: pfbmpxxfq1cy) đã được giải quyết vào ngày 6 tháng 11 năm 2026.\n\nBạn có muốn tôi kiểm tra chi tiết bất kỳ sự cố nào trong số này không?",
+  "trace": [
+    {
+      "event": "model",
+      "step": 1,
+      "finish": "tool_calls",
+      "tool_calls": 1
+    },
+    {
+      "event": "tool",
+      "step": 1,
+      "name": "get_status",
+      "arguments": {
+        "component": "Actions",
+        "provider": "github"
+      },
+      "result": {
+        "provider": "github",
+        "captured_at": "2026-11-09T03:50:47.065020+00:00",
+        "overall": {
+          "indicator": "none",
+          "description": "All Systems Operational"
+        },
+        "components": [
+          {
+            "name": "Actions",
+            "status": "operational"
+          }
+        ],
+        "incidents": [
+          {
+            "id": "pfbmpxxfq1cy",
+            "name": "Degraded performance for multiple GitHub services",
+            "status": "resolved",
+            "updated_at": "2026-11-06T00:20:49.369Z"
+          },
+          {
+            "id": "t89g2q1800fr",
+            "name": "Incident with Actions",
+            "status": "resolved",
+            "updated_at": "2026-11-05T17:42:35.455Z"
+          },
+          {
+            "id": "h02n9572mx9y",
+            "name": "Incident with Actions",
+            "status": "resolved",
+            "updated_at": "2026-11-07T01:10:18.506Z"
+          },
+          {
+            "id": "xr3myzj7ms51",
+            "name": "Incident with Actions and Pages",
+            "status": "resolved",
+            "updated_at": "2026-11-07T01:04:38.647Z"
+          },
+          {
+            "id": "smtdswd1h2w4",
+            "name": "Incident with Pull Requests, Git Operations and Issues",
+            "status": "resolved",
+            "updated_at": "2026-11-04T11:50:06.459Z"
+          }
+        ],
+        "matching_incidents_in_last_50": 23,
+        "note": "Chỉ tìm theo chuỗi trong 50 incident gần nhất; không tìm thấy không chứng minh không có sự cố.",
+        "source": "https://www.githubstatus.com"
+      }
+    },
+    {
+      "event": "model",
+      "step": 2,
+      "finish": "stop",
+      "tool_calls": 0
+    }
+  ],
+  "usage": [
+    {
+      "completion_tokens": 18,
+      "prompt_tokens": 184,
+      "total_tokens": 202,
+      "x_ckey": {
+        "cost": 2,
+        "cost_is_estimate": false,
+        "request_id": "req_28943ae9aeb09d6ccf12abfd"
+      }
+    },
+    {
+      "completion_tokens": 227,
+      "prompt_tokens": 645,
+      "total_tokens": 872,
+      "x_ckey": {
+        "cost": 5.57,
+        "cost_is_estimate": false,
+        "request_id": "req_a1eacdd21f7dc45b719dc0e8"
+      }
+    }
+  ]
+}

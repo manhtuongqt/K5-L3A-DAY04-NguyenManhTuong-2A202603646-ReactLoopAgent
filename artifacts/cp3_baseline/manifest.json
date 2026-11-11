@@ -1,0 +1,32 @@
+{
+  "version": "cp3_before_source_validation",
+  "provider": "openai",
+  "model": "claude-opus-5",
+  "judge_provider": "openai",
+  "judge_model": "claude-opus-5",
+  "max_steps": 8,
+  "dataset": "core",
+  "workers": 2,
+  "sha256": {
+    "agent.py": "9cc1625eeda904348800070c1d022b4473c3befad18d00b9b0f57973a5912882",
+    "providers.py": "30227d43a3c5d54d199bf3f35d64fc768e08592f62e4df30c82648779221a023",
+    "with_env.py": "b041893f4f2df86318ae0b816c94a9d02de62562d1cb76677f39439d6d7e2a34"
+  },
+  "protected_sha256": {
+    "evals/cases.json": "bca3ea31cb42dae5a952a7522bf87242b25117e565d1a5c3c636c18635abf50b",
+    "evals/scenarios.py": "193c39f8f82cdaa3c4f7b68715ddaf94cdae1f4f760bcc893ccaa42e84436a1f",
+    "evals/grading.py": "e64f759f933830800788f6d315768a1152214faefb947585a1ff9148e7761f25",
+    "RUBRIC.md": "a60607764091f0d6b33fd09a4792941878877bdee1979948c3f78bd876f775a0",
+    "fixtures/cloudflare.json": "04eb4851cae0b59cda64313fb82b94c5de7ab8e3a47016844b97762c18bbd57e",
+    "fixtures/github.json": "ef189b6b8376d42b50b5676e08264f5745a69141b19cd0ed3f86a1b74217f11c"
+  },
+  "unit_tests": {
+    "total": 43,
+    "failures": [
+      "test_validation.EvidenceGateTests.test_missing_url_at_budget_limit_is_not_completed",
+      "test_validation.EvidenceGateTests.test_missing_url_gets_revision_within_budget"
+    ],
+    "errors": [],
+    "passed": 41
+  }
+}

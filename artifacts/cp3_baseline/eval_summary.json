@@ -1,0 +1,57 @@
+{
+  "summary": {
+    "total_cases": 22,
+    "scored_cases": 22,
+    "unscored_cases": 0,
+    "score_0_100": 96.73,
+    "partial_mean_0_100": null
+  },
+  "config": {
+    "provider": "openai",
+    "model": "claude-opus-5",
+    "judge_provider": "openai",
+    "judge_model": "claude-opus-5",
+    "max_steps": 8,
+    "dataset": "core"
+  },
+  "run_status_counts": {
+    "completed": 22
+  },
+  "agent_model_calls": 56,
+  "judge_calls_with_usage": 22,
+  "tool_calls": 47,
+  "agent_total_tokens": 43170,
+  "judge_total_tokens": 33616,
+  "combined_total_tokens": 76786,
+  "integrity": {
+    "sha256": true,
+    "protected_sha256": true
+  },
+  "eval_before_sha256": "a392fccf5e98d306ea36fdc5b8e10eb599ecd2ea89bced97fee0b2d69f054d3c",
+  "scores": {
+    "E1": 100,
+    "E2": 100,
+    "E3": 100,
+    "E4": 100,
+    "E5": 100,
+    "E6": 100,
+    "A1": 97,
+    "A2": 100,
+    "A3": 100,
+    "A4": 100,
+    "A5": 95,
+    "A6": 97,
+    "A7": 100,
+    "A8": 98,
+    "H1": 99,
+    "H2": 99,
+    "H3": 50,
+    "H4": 100,
+    "H5": 98,
+    "H6": 99,
+    "H7": 99,
+    "H8": 97
+  },
+  "currency_cost": null,
+  "currency_cost_note": "Gateway metadata has cost values but currency/unit has not been verified."
+}

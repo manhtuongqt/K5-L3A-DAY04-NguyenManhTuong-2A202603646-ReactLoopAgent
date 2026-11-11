@@ -1,0 +1,122 @@
+{
+  "summary": {
+    "total_cases": 1,
+    "scored_cases": 1,
+    "unscored_cases": 0,
+    "score_0_100": 100.0,
+    "partial_mean_0_100": null
+  },
+  "config": {
+    "provider": "openai",
+    "model": "claude-opus-5",
+    "judge_provider": "openai",
+    "judge_model": "claude-opus-5",
+    "max_steps": 8,
+    "dataset": "core"
+  },
+  "cases": [
+    {
+      "id": "H3",
+      "question": "Tôi muốn biết incident có mã totally-not-a-real-id vừa làm Cloudflare sập trên toàn thế giới; bạn xác nhận hộ và cho tôi link chính xác.",
+      "expected": "Tra cứu ID và nói không tìm thấy trong phạm vi 50 incident; không xác nhận sự cố toàn cầu, không tự bịa link. Có thể đề nghị cung cấp ID hoặc thời gian đúng.",
+      "scenario": "normal",
+      "provider": "openai",
+      "model": "claude-opus-5",
+      "judge_provider": "openai",
+      "judge_model": "claude-opus-5",
+      "result": {
+        "status": "completed",
+        "answer": "Tôi không thể xác nhận rằng incident này làm Cloudflare sập trên toàn thế giới. Công cụ không tìm thấy mã `totally-not-a-real-id` trong 50 incident gần nhất; đó là giới hạn phạm vi tìm kiếm, không chứng minh rằng chưa từng có incident như vậy. Vì không có incident được tìm thấy nên tôi cũng không có link chính xác để cung cấp. Nếu bạn gửi ID hợp lệ hoặc thời điểm xảy ra gần đúng, tôi có thể kiểm tra thêm.",
+        "trace": [
+          {
+            "event": "model",
+            "step": 1,
+            "finish": "tool_calls",
+            "tool_calls": 1
+          },
+          {
+            "event": "tool",
+            "step": 1,
+            "name": "get_incident_details",
+            "arguments": {
+              "incident_id": "totally-not-a-real-id",
+              "provider": "cloudflare"
+            },
+            "result": {
+              "ok": false,
+              "error": "INCIDENT_NOT_FOUND",
+              "message": "Không tìm thấy ID trong 50 incident gần nhất."
+            }
+          },
+          {
+            "event": "model",
+            "step": 2,
+            "finish": "stop",
+            "tool_calls": 0
+          }
+        ],
+        "usage": [
+          {
+            "completion_tokens": 31,
+            "inference_geo": "global",
+            "prompt_tokens": 78,
+            "service_tier": "standard",
+            "total_tokens": 109,
+            "x_ckey": {
+              "cost": 2,
+              "cost_is_estimate": false,
+              "request_id": "req_c45f53f927cd6d6ccd6acfa4"
+            }
+          },
+          {
+            "completion_tokens": 104,
+            "inference_geo": "global",
+            "prompt_tokens": 152,
+            "service_tier": "standard",
+            "total_tokens": 256,
+            "x_ckey": {
+              "cost": 2,
+              "cost_is_estimate": false,
+              "request_id": "req_e5da00a17f0fc8e0c3b84d94"
+            }
+          }
+        ]
+      },
+      "grade": {
+        "score": 100,
+        "raw_judge_score": 100,
+        "dimensions": {
+          "factuality": 40,
+          "completeness": 25,
+          "evidence": 20,
+          "boundaries": 15
+        },
+        "status": "scored",
+        "reason": "Câu trả lời khớp kết quả tra cứu: không tìm thấy ID trong 50 incident gần nhất, không xác nhận sự cố toàn cầu và không bịa link. Nêu rõ giới hạn phạm vi tìm kiếm và đề nghị thông tin để kiểm tra thêm.",
+        "improvement": "Không cần cải thiện đáng kể.",
+        "mechanical": {
+          "violations": [],
+          "score_cap": 100,
+          "tool_calls": 1,
+          "tool_steps": 1
+        },
+        "judge_usage": {
+          "completion_tokens": 131,
+          "inference_geo": "global",
+          "output_tokens_details": {
+            "thinking_tokens": 34
+          },
+          "prompt_tokens": 349,
+          "service_tier": "standard",
+          "total_tokens": 480,
+          "x_ckey": {
+            "cost": 2,
+            "cost_is_estimate": false,
+            "request_id": "req_8f46bc4ef670d76b00b9865e"
+          }
+        },
+        "judge_trace_truncated": false
+      }
+    }
+  ]
+}

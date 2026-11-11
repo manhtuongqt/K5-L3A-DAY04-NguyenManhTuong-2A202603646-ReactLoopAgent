@@ -1,3 +1,38 @@
+# Bài nộp Day04 — Nguyễn Mạnh Tường
+
+**MSSV:** 2A202603646 · **Lớp:** L3A · **Hình thức:** cá nhân.
+
+Tôi xây dựng Status Investigation Agent để kiểm tra dữ liệu trạng thái GitHub và Cloudflare, đọc incident và trả lời có bằng chứng. Phần dưới giữ hướng dẫn đề gốc; báo cáo bài làm được tách theo checkpoint để đối chiếu từng yêu cầu.
+
+## Mở demo
+
+```powershell
+python with_env.py demo_server.py
+```
+
+Mở **http://127.0.0.1:8504**. Demo gồm CP2 chạy API thật, CP3 mô phỏng lỗi offline, CP4 đọc eval trước cải tiến, CP5 xem cách sửa lỗi/nguồn, CP6 so sánh và CP7 đối chiếu gate. Các loại dữ liệu được ghi nhãn riêng. Dữ liệu status là snapshot, không phải tình trạng live hiện tại.
+
+Python 3.10+, không cần thư viện ngoài. Đặt key trong `.env`, không điền vào `.env.example`. Script `with_env.py` nạp biến cho tiến trình Python. Model bài làm dùng tên `claude-opus-5` do CKEY cung cấp qua giao thức OpenAI-compatible; tên backend chưa được xác minh độc lập. Key không nằm trong repo.
+
+## Hồ sơ từng checkpoint
+
+| Mục | Công việc và bằng chứng |
+|---|---|
+| CP1–CP2 | [Cấu hình và loop cơ bản](CP2_HUONG_DAN.md) |
+| CP3 | [Xử lý lỗi và trace](CP3_DANH_GIA.md) |
+| CP4 | [Eval trước cải tiến](CP4_DANH_GIA.md) · [22 kết quả gốc](eval_before.json) |
+| CP5 | [Phân tích và sửa agent](CP5_DANH_GIA.md) |
+| CP6 | [So sánh trước/sau](CP6_DANH_GIA.md) · [22 kết quả sau cải tiến](eval_after.json) |
+| CP7 | [Demo và checklist nộp bài](CP7_NOP_BAI.md) |
+| Phân tích | [NOTES.md](NOTES.md) · [Audit gate](artifacts/checkpoint_audit.json) |
+| Cách sử dụng | [Demo CP2–CP7](DEMO_CP2.md) |
+
+Kiểm tra offline bằng `python -m unittest discover -s tests -v`. Hai file eval dùng cùng cấu hình; code của các phiên bản và kết quả cải tiến trung gian được giữ trong `artifacts/`. Không sửa fixtures, cases, scenarios hoặc grading để làm case pass. Bonus chưa thực hiện.
+
+Code có hỗ trợ từ coding agent; báo cáo kỹ thuật dựa trên tests và trace thực tế. Tôi cần giải thích được code, kết quả và giới hạn khi trình bày. Việc nộp link lên LMS do tôi thực hiện; trạng thái nộp chưa được tự động xác nhận trong repo.
+
+---
+
 # Lab: Xây dựng Status Investigation Agent
 
 > **Hình thức: Bài cá nhân.** Mỗi cá nhân tự làm, tự tạo repo riêng và tự nộp link lên LMS.

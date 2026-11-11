@@ -1,0 +1,18 @@
+{
+  "summary": {
+    "total_cases": 22,
+    "scored_cases": 22,
+    "unscored_cases": 0,
+    "score_0_100": 95.55,
+    "partial_mean_0_100": null
+  },
+  "config": {
+    "provider": "openai",
+    "model": "claude-opus-5",
+    "judge_provider": "openai",
+    "judge_model": "claude-opus-5",
+    "max_steps": 8,
+    "dataset": "core"
+  },
+  "reason_retained": "H2 regression: incident status was checked without service/component status."
+}
