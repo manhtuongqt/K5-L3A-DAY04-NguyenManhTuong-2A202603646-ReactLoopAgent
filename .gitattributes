@@ -5,3 +5,6 @@ with_env.py -text
 artifacts/cp3_baseline/*.py -text
 artifacts/cp5_improved/*.py -text
 artifacts/cp5_v1/*.py -text
+eval_before.json -text
+eval_after.json -text
+artifacts/**/*.json -text
